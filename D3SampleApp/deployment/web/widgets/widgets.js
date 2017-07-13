@@ -1,0 +1,1 @@
+﻿define(["TechTamminaDThreeCharts/widget/TechTamminaDThreeCharts", "AppCloudNavigation/AppCloudNavigation", "AppSwitcher/AppSwitcher", "ProfileMenu/ProfileMenu"], {});

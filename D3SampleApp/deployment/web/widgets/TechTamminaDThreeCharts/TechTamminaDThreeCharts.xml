@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<widget id="TechTamminaDThreeCharts.widget.TechTamminaDThreeCharts" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
+    <name>TechTamminaDThreeCharts</name>
+    <description>The description of this widget.</description>
+
+    <icon />
+
+     <properties>
+        
+       <property key="width" type="integer" required="true" defaultValue="500">
+             <caption>Width</caption>
+            <category>General</category>
+            <description></description>
+        </property>
+
+        <property key="height" type="integer" required="true" defaultValue="500">
+             <caption>Height</caption>
+            <category>General</category>
+            <description></description>
+        </property>
+
+        <property key="chartType" type="enumeration" defaultValue="Pie" required="true">
+            <caption>Type of Chart</caption>
+            <category>Data Source</category>
+            <description>Select the type of chart to be displayed</description>
+            <enumerationValues>
+                <enumerationValue key="Pie">Pie Chart</enumerationValue>
+                <enumerationValue key="Bar">Bar Chart</enumerationValue>
+                <enumerationValue key="Area">Area Chart</enumerationValue>
+            </enumerationValues>
+        </property>
+
+        <property key="dataValue" type="attribute" required="true">
+             <caption>Values of the chart</caption>
+            <category>Data Source</category>         
+            <description>This depends on the chart. If Pie chart it will be the pie values. If Bar or Area chart it will be y co-ordinate.
+             </description>
+             <attributeTypes>
+                <attributeType name="String" />
+            </attributeTypes>
+        </property>
+
+        <property key="calBarDates" type="attribute" required="true">
+            <caption>X Co-ordinate</caption>
+            <category>Data Source</category>         
+            <description>If Pie chart these are not considered. If Bar or Area chart it wll be x co-ordinate.
+             </description>
+             <attributeTypes>
+                <attributeType name="String" />
+            </attributeTypes>
+        </property>
+
+        <property key="dataCaption" type="attribute" required="true">
+            <caption>Captions of the pie chart</caption>
+            <category>Data Source</category>         
+            <description>The Captions of the pies to be displayed separated by comma. Example:Category A,Category B, Category C
+             </description>
+             <attributeTypes>
+                <attributeType name="String" />
+            </attributeTypes>
+        </property>
+
+        <property key="innerRadius" type="integer" required="true" defaultValue="5">
+             <caption>Inner Radius</caption>
+            <category>Appearence</category>
+            <description>The inner radius of the Pie chart.</description>
+        </property>
+
+        <property key="outerRadius" type="integer" required="true" defaultValue="100">
+             <caption>Outer Radius</caption>
+            <category>Appearence</category>
+            <description>The outer radius of the Pie chart.</description>
+        </property>
+
+        <property key="strokeColor" type="string" required="true" defaultValue="#FFF">
+            <caption>Stroke Color</caption>
+            <category>Appearence</category>
+            <description>The stroke color of the Pie chart.</description>
+        </property>
+
+
+         <property key="chartColor" type="enumeration" defaultValue="colorScale10" required="true">
+            <caption>Colors of the chart</caption>
+            <category>Appearence</category>         
+            <description>The color to be displayed.
+             </description>
+           <enumerationValues>
+                <enumerationValue key="colorScale10">colorScale10</enumerationValue>
+                <enumerationValue key="colorScale20">colorScale20</enumerationValue>
+                <enumerationValue key="colorScale20b">colorScale20b</enumerationValue>
+                <enumerationValue key="colorScale20c">colorScale20c</enumerationValue>
+            </enumerationValues>
+        </property>
+
+        <property key="yLabel" type="string" required="true" defaultValue="">
+            <caption>Label on Y-axis</caption>
+            <category>Appearence</category>         
+            <description>The label to be displayed on Y-axis for Bar and Area chart.
+             </description>
+        </property>
+
+       <property key="animationDuration" type="integer" required="true" defaultValue="2000">
+             <caption>Animation Duration</caption>
+            <category>Animation</category>
+            <description>Duration in milli seconds</description>
+        </property>
+
+        <property key="animationEasing" type="enumeration" required="true" defaultValue="bounce">
+             <caption>Animation Easing</caption>
+            <category>Animation</category>
+            <description>Animation easing function. The way it animates.</description>
+            <enumerationValues>
+                <enumerationValue key="linear">Linear</enumerationValue>
+                <enumerationValue key="poly">Poly</enumerationValue>
+                <enumerationValue key="quad">Quad</enumerationValue>
+                <enumerationValue key="cubic">Cubic</enumerationValue>
+                <enumerationValue key="sin">Sin</enumerationValue>
+                <enumerationValue key="exp">Exp</enumerationValue>
+                <enumerationValue key="elastic">Elastic</enumerationValue>
+                <enumerationValue key="bounce">Bounce</enumerationValue>
+            </enumerationValues>
+        </property>
+
+    </properties>
+</widget>

@@ -1,0 +1,10 @@
+Buildfile: C:\Users\Dovelopement6\Documents\Mendix\D3SampleAppNew\deployment\build_core.xml
+
+deploy:
+    [unzip] Expanding: C:\Program Files\Mendix\7.0.2\modeler\deployment.mxz into C:\Users\Dovelopement6\Documents\Mendix\D3SampleAppNew\deployment
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+
+
+
