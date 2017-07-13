@@ -4,6 +4,7 @@ D3 Charts Widget Documentation
 1.	Download Tammina D3Charts widget from app store into the project.
 
 2.	Create two entities as shown in the image. The attributes in the Report entity are calculated values.
+
  ![Alt text](/images/Entities.png?raw=true "Optional Title")
 
 ##### Note: The attribute names can be different
@@ -18,11 +19,13 @@ D3 Charts Widget Documentation
 * `Values:` Combination of all the data present in value attribute of GenerateData entity separated by ~.
 * `Captions:` Combination of all the data present in caption attribute of GenerateData entity separated by ~.
 * `XcoOrdinte:` Combination of all the data present in xaxis attribute of GenerateData entity separated by ~.
+
 ##### Note : The delimiter  must be ~.
 
  ![Alt text](/images/Microflow.png?raw=true "Optional Title")
 
 5.	For displaying chart, place the widget under a dataview and select proper settings mapping the Report entity and selecting attributes.
+
  ![Alt text](/images/Widget.png?raw=true "Optional Title")
  
 6.Download this sample app and run it in modeler to view the charts.
