@@ -357,7 +357,7 @@ function pieChart(width, height, colors, innerRad, outerRad, animateDur, strokeC
 /*---------------------Bar chart-------------------*/
 function barChart(chartWidth, chartHeight, color, yLabelData, aniDur, easing,xLable,xLableSize,yLableSize) {
 
-    var margin = { top: 20, right: 20, bottom: 30, left: 40 },
+    var margin = { top: 20, right: 20, bottom: 70, left: 70 },
         width = chartWidth - margin.left - margin.right,
         height = chartHeight - margin.top - margin.bottom;
     var xaxis_margin=-(height/2);
@@ -408,7 +408,7 @@ function barChart(chartWidth, chartHeight, color, yLabelData, aniDur, easing,xLa
         .attr("class", "y axis")
         .append("text") // just for the title (ticks are automatic)
         .attr("transform", "rotate(-90)") // rotate the text!
-        .attr("y", -35)
+        .attr("y", -57)
         .attr("x", xaxis_margin)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
@@ -491,7 +491,7 @@ function areaChart(yLabeldata, animateDur, easing, color,chartWidth, chartHeight
         data.push(obj);
     }
 
-    var margin = { top: 20, right: 20, bottom: 30, left: 50 },
+    var margin = { top: 20, right: 20, bottom: 70, left: 70 },
         width = chartWidth - margin.left - margin.right,
         height = chartHeight - margin.top - margin.bottom;
     var  xaxis_margin=-(height/2);
@@ -548,7 +548,7 @@ function areaChart(yLabeldata, animateDur, easing, color,chartWidth, chartHeight
         .append("text")
         .attr("transform", "rotate(-90)")
         .attr("x", xaxis_margin)
-        .attr("y", -35)
+        .attr("y", -57)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
         .style("font", "normal "+yLableSize+" Arial")
