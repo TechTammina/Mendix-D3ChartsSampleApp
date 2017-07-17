@@ -104,7 +104,7 @@ define([
                         colour = d3.scale.category20c();
                 };
                 //alert(chart_type)
-
+                //alert(this.fontSize)
                 if (chart_type == 'Bar') {
                     barChart(this.width, this.height, colour, this.yLabel, this.animationDuration, animEase, this.xLabel,this.xLabelSize,this.yLabelSize);
                 } else if (chart_type == 'Pie') {
@@ -330,6 +330,7 @@ function pieChart(width, height, colors, innerRad, outerRad, animateDur, strokeC
         .on("mouseout", synchronizedMouseOut);
 
     // Create hyper linked text at right that acts as label key...
+   
     canvas.selectAll("a.legend_link")
         .data(dataSet) // Instruct to bind dataSet to text elements
         .enter().append("svg:a") // Append legend elements
@@ -347,7 +348,7 @@ function pieChart(width, height, colors, innerRad, outerRad, animateDur, strokeC
         .attr("index_value", function (d, i) { return "index-" + i; })
         .attr("class", function (d, i) { return "pie-" + pieName + "-legendText-index-" + i; })
         .style("fill", fontColour)
-        .style("font", "normal"+fontSize+"Arial")
+        .style("font", "normal "+fontSize+" Arial")
         .on('mouseover', synchronizedMouseOver)
         .on("mouseout", synchronizedMouseOut);
     
@@ -400,7 +401,7 @@ function barChart(chartWidth, chartHeight, color, yLabelData, aniDur, easing,xLa
         .attr("x", - (xaxis_margin))
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .style("font", "normal"+xLableSize+" Arial")
+        .style("font", "normal "+xLableSize+" Arial")
         .text(xLable);
 
     svg.append("g")
@@ -411,7 +412,7 @@ function barChart(chartWidth, chartHeight, color, yLabelData, aniDur, easing,xLa
         .attr("x", xaxis_margin)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .style("font", "normal"+yLableSize+" Arial")
+        .style("font", "normal "+yLableSize+" Arial")
         .text(yLabelData);
 
     var data = [];
@@ -538,7 +539,7 @@ function areaChart(yLabeldata, animateDur, easing, color,chartWidth, chartHeight
         .attr("x", -(xaxis_margin))
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .style("font", "normal"+xLableSize+" Arial")
+        .style("font", "normal "+xLableSize+" Arial")
         .text(xLable);
     // alert("yLabeldata->"+yLabeldata);
     svg.append("g")
@@ -550,7 +551,7 @@ function areaChart(yLabeldata, animateDur, easing, color,chartWidth, chartHeight
         .attr("y", -35)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .style("font", "normal"+yLableSize+" Arial")
+        .style("font", "normal "+yLableSize+" Arial")
         .text(yLabeldata);
         
   
