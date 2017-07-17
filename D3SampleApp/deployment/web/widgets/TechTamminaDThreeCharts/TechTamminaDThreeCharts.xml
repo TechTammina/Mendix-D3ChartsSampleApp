@@ -10,13 +10,25 @@
        <property key="width" type="integer" required="true" defaultValue="500">
              <caption>Width</caption>
             <category>General</category>
-            <description></description>
+            <description>Applies only for Bar chart and Area chart</description>
         </property>
 
         <property key="height" type="integer" required="true" defaultValue="500">
              <caption>Height</caption>
             <category>General</category>
-            <description></description>
+            <description>Applies only for Bar chart and Area chart</description>
+        </property>
+         <property key="fontSize" type="string" required="true" defaultValue="1.2em">
+             <caption>Font Size</caption>
+            <category>General</category>
+            <description>Enter font size in em for Pie chart values </description>
+        </property>
+         
+        
+         <property key="fontColour" type="string" required="true" defaultValue="#4c4c4c">
+             <caption>Font Colour</caption>
+            <category>General</category>
+            <description>Enter font colour for displaying pie chart values</description>
         </property>
 
         <property key="chartType" type="enumeration" defaultValue="Pie" required="true">
@@ -75,7 +87,7 @@
         <property key="strokeColor" type="string" required="true" defaultValue="#FFF">
             <caption>Stroke Color</caption>
             <category>Appearence</category>
-            <description>The stroke color of the Pie chart.</description>
+            <description>The stroke color of the Pie chart.If not necessary keep '#'</description>
         </property>
 
 
@@ -91,14 +103,28 @@
                 <enumerationValue key="colorScale20c">colorScale20c</enumerationValue>
             </enumerationValues>
         </property>
-
-        <property key="yLabel" type="string" required="true" defaultValue="">
+          <property key="xLabel" type="string" required="true" defaultValue="Default X-axis">
+            <caption>Label on X-axis</caption>
+            <category>Appearence</category>         
+            <description>The label to be displayed on X-axis for Bar and Area chart.
+             </description>
+        </property>
+         <property key="xLabelSize" type="string" required="true" defaultValue="12em">
+             <caption>Size of X-Label</caption>
+            <category>Appearence</category>
+            <description>The label size to be displayed on X-axis for Bar and Area chart. </description>
+        </property>
+        <property key="yLabel" type="string" required="true" defaultValue="Default Y-axis">
             <caption>Label on Y-axis</caption>
             <category>Appearence</category>         
             <description>The label to be displayed on Y-axis for Bar and Area chart.
              </description>
         </property>
-
+         <property key="yLabelSize" type="string" required="true" defaultValue="12em">
+             <caption>Size of Y-Label</caption>
+            <category>Appearence</category>
+            <description>The label size to be displayed on Y-axis for Bar and Area chart. </description>
+        </property>
        <property key="animationDuration" type="integer" required="true" defaultValue="2000">
              <caption>Animation Duration</caption>
             <category>Animation</category>

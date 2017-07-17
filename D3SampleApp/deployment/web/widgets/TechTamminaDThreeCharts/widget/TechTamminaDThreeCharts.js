@@ -3,6 +3,8 @@ var dataVal = [];
 var cap = [];
 var barDates = [];
 var flag = 0;
+
+
 define([
     "dojo/_base/declare",
     "mxui/widget/_WidgetBase",
@@ -70,7 +72,7 @@ define([
         _updateRendering: function (callback) {
             
             logger.debug(this.id + "._updateRendering");
-             var animEase = "";
+            var animEase = "";
             var chart_type = "", colour;
             if (this._contextObj !== null) {
                   
@@ -104,11 +106,11 @@ define([
                 //alert(chart_type)
 
                 if (chart_type == 'Bar') {
-                    barChart(this.width, this.height, colour, this.yLabel, this.animationDuration, animEase);
+                    barChart(this.width, this.height, colour, this.yLabel, this.animationDuration, animEase, this.xLabel,this.xLabelSize,this.yLabelSize);
                 } else if (chart_type == 'Pie') {
-                    pieChart(this.width, this.height, colour, this.innerRadius, this.outerRadius, this.animationDuration, this.strokeColor, animEase);
+                    pieChart(this.width, this.height, colour, this.innerRadius, this.outerRadius, this.animationDuration, this.strokeColor, animEase,this.fontSize,this.fontColour);
                 } else {
-                    areaChart(this.yLabel, this.animationDuration, animEase, colour);
+                    areaChart(this.yLabel, this.animationDuration, animEase, colour,this.width, this.height, this.xLabel,this.xLabelSize,this.yLabelSize);
                 }
             } else {
                 dojoStyle.set(this.domNode, "display", "none");
@@ -151,7 +153,9 @@ define([
 require(["TechTamminaDThreeCharts/widget/TechTamminaDThreeCharts"]);
 
 
-function pieChart(width, height, colors, innerRad, outerRad, animateDur, strokeColor, easing) {
+function pieChart(width, height, colors, innerRad, outerRad, animateDur, strokeColor, easing,fontSize,fontColour) {
+   
+    //alert(fontSize+"=====fontSize"+fontColour+"=========fontColour"+fontStyle)
     //alert(easing + " strokeColor=>" + strokeColor);
     var dataSet = [];
     for (var i = 0; i < dataVal.length; i++) {
@@ -224,7 +228,7 @@ function pieChart(width, height, colors, innerRad, outerRad, animateDur, strokeC
 
         var textSelector = "." + "pie-" + pieName + "-legendText-" + indexValue;
         var selectedLegendText = d3.selectAll(textSelector);
-        selectedLegendText.style("fill", "Blue");
+        selectedLegendText.style("fill", fontColour);
     };
 
     var tweenPie = function (b) {
@@ -314,7 +318,7 @@ function pieChart(width, height, colors, innerRad, outerRad, animateDur, strokeC
     // Plot the bullet circles...
     canvas.selectAll("circle")
         .data(dataSet).enter().append("svg:circle") // Append circle elements
-        .attr("cx", pieWidthTotal + legendBulletOffset)
+        .attr("cx", (pieWidthTotal/2)+ legendBulletOffset)
         .attr("cy", function (d, i) { return i * textVerticalSpace - legendVerticalOffset; })
         .attr("stroke-width", ".5")
         .style("fill", function (d, i) { return colorScale(i); }) // Bullet fill color
@@ -332,7 +336,7 @@ function pieChart(width, height, colors, innerRad, outerRad, animateDur, strokeC
         .attr("xlink:href", function (d) { return d.link; })
         .append("text")
         .attr("text-anchor", "center")
-        .attr("x", pieWidthTotal + legendBulletOffset + legendTextOffset)
+        .attr("x", (pieWidthTotal/2) + legendBulletOffset + legendTextOffset)
         //.attr("y", function(d, i) { return legendOffset + i*20 - 10; })
         //.attr("cy", function(d, i) {    return i*textVerticalSpace - legendVerticalOffset; } )
         .attr("y", function (d, i) { return i * textVerticalSpace - legendVerticalOffset; })
@@ -342,18 +346,20 @@ function pieChart(width, height, colors, innerRad, outerRad, animateDur, strokeC
         .attr("color_value", function (d, i) { return colorScale(i); }) // Bar fill color...
         .attr("index_value", function (d, i) { return "index-" + i; })
         .attr("class", function (d, i) { return "pie-" + pieName + "-legendText-index-" + i; })
-        .style("fill", "Blue")
-        .style("font", "normal 1.5em Arial")
+        .style("fill", fontColour)
+        .style("font", "normal"+fontSize+"Arial")
         .on('mouseover', synchronizedMouseOver)
         .on("mouseout", synchronizedMouseOut);
     
 }
 
 /*---------------------Bar chart-------------------*/
-function barChart(chartWidth, chartHeight, color, yLabelData, aniDur, easing) {
+function barChart(chartWidth, chartHeight, color, yLabelData, aniDur, easing,xLable,xLableSize,yLableSize) {
+
     var margin = { top: 20, right: 20, bottom: 30, left: 40 },
         width = chartWidth - margin.left - margin.right,
         height = chartHeight - margin.top - margin.bottom;
+    var xaxis_margin=-(height/2);
 
     // D3 scales = just math
     // x is a function that transforms from "domain" (data) into "range" (usual pixels)
@@ -387,15 +393,25 @@ function barChart(chartWidth, chartHeight, color, yLabelData, aniDur, easing) {
 
     svg.append("g")
         .attr("class", "x axis")
-        .attr("transform", "translate(0," + height + ")")
+        .attr("transform", "translate(0," + height + ")") 
+        .append("text")
+        .attr("transform", "rotate(0)")
+        .attr("y", 22)
+        .attr("x", - (xaxis_margin))
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .style("font", "normal"+xLableSize+" Arial")
+        .text(xLable);
 
     svg.append("g")
         .attr("class", "y axis")
         .append("text") // just for the title (ticks are automatic)
         .attr("transform", "rotate(-90)") // rotate the text!
-        .attr("y", 6)
+        .attr("y", -35)
+        .attr("x", xaxis_margin)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
+        .style("font", "normal"+yLableSize+" Arial")
         .text(yLabelData);
 
     var data = [];
@@ -462,7 +478,7 @@ function draw(slice, x, y, data, svg, xAxis, yAxis, width, height, color, durAni
 
 
 
-function areaChart(yLabeldata, animateDur, easing, color) {
+function areaChart(yLabeldata, animateDur, easing, color,chartWidth, chartHeight,xLable,xLableSize,yLableSize) {
     //alert("inside areaChart" + yLabeldata + "yLabeldata color=>" + color);
     var data = [];
     var colorScale = color;
@@ -475,9 +491,9 @@ function areaChart(yLabeldata, animateDur, easing, color) {
     }
 
     var margin = { top: 20, right: 20, bottom: 30, left: 50 },
-        width = 575 - margin.left - margin.right,
-        height = 350 - margin.top - margin.bottom;
-
+        width = chartWidth - margin.left - margin.right,
+        height = chartHeight - margin.top - margin.bottom;
+    var  xaxis_margin=-(height/2);
     var x = window.d3.scale.linear()
         .domain([0, window.d3.max(data, function (d) { return d.x; })])
         .range([0, width]);
@@ -515,17 +531,28 @@ function areaChart(yLabeldata, animateDur, easing, color) {
     svg.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
+        .call(xAxis)
+        .append("text")
+        .attr("transform", "rotate(0)")
+        .attr("y", 22)
+        .attr("x", -(xaxis_margin))
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .style("font", "normal"+xLableSize+" Arial")
+        .text(xLable);
     // alert("yLabeldata->"+yLabeldata);
     svg.append("g")
         .attr("class", "y axis")
         .call(yAxis)
         .append("text")
         .attr("transform", "rotate(-90)")
-        .attr("y", 6)
+        .attr("x", xaxis_margin)
+        .attr("y", -35)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
+        .style("font", "normal"+yLableSize+" Arial")
         .text(yLabeldata);
+        
   
 }
 
